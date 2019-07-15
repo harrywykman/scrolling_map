@@ -52,6 +52,7 @@ def main():
                       max_monsters_per_room)
 
     camera = Camera(x=0, y=0, width=screen_width, height=screen_height, map_width=map_width, map_height=map_height)
+    camera.update(player)
 
     game_state: GameStates = GameStates.PLAYERS_TURN
 
