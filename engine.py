@@ -11,8 +11,8 @@ from camera import Camera
 def main():
     window_title: str = 'Bearlibterm/TCOD Roguelike'
 
-    screen_width: int = 80
-    screen_height: int = 40
+    screen_width: int = 40
+    screen_height: int = 20
     map_width: int = 80
     map_height: int = 40
 
@@ -61,7 +61,6 @@ def main():
 
     while game_running:
         if fov_recompute:
-            #fov_x, fov_y = camera.apply(player.x, player.y)
             game_map.compute_fov(
                 x=player.x,
                 y=player.y,
@@ -113,8 +112,7 @@ def main():
             if game_state == GameStates.ENEMY_TURN:
                 for entity in entities:
                     if entity != player:
-                        pass
-                        # print(f'The {entity.name} ponders the meaning of its existence.')
+                        print(f'The {entity.name} ponders the meaning of its existence.')
 
                 game_state = GameStates.PLAYERS_TURN
 

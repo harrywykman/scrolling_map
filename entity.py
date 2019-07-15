@@ -21,10 +21,7 @@ class Entity:
         Draw the entity to the terminal
         """
         x, y = camera.apply(self.x, self.y)
-        #x, y = (self.x, self.y)
         terminal.printf(x=x, y=y, s=f'[color={self.color}]{self.char}[/color]')
-        # terminal.printf(x=self.x, y=self.y, s=f'[color=red]{self.char}[/color]')
-        # terminal.printf(x=self.x, y=self.y, s=self.char, color=self.color)
 
     def move(self, dx, dy):
         """

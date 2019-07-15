@@ -145,25 +145,22 @@ class GameMap(Map):
                 entities.append(monster)
 
     def render(self, colors, camera: Camera):
-        # for y in range(camera.height):
-        #     for x in range(camera.width):
         for y in range(self.height):
             for x in range(self.width):        
-                camera_x, camera_y = camera.apply(x, y)
-                #print(f'x: {x}, y: {y}')
+                x_in_camera, y_in_camera = camera.apply(x, y)
                 wall = self.is_blocked(x, y)
                 visible = self.fov[x, y]
 
                 if visible:
                     if wall:
-                        terminal.printf(x=camera_x, y=camera_y, s=f'[color={colors.get("light_wall")}]#[/color]')
+                        terminal.printf(x=x_in_camera, y=y_in_camera, s=f'[color={colors.get("light_wall")}]#[/color]')
                     else:
-                        terminal.printf(x=camera_x, y=camera_y, s=f'[color={colors.get("light_ground")}].[/color]')
+                        terminal.printf(x=x_in_camera, y=y_in_camera, s=f'[color={colors.get("light_ground")}].[/color]')
 
                 elif self.explored[x, y]:
                     if wall:
-                        terminal.printf(x=camera_x, y=camera_y, s=f'[color={colors.get("dark_wall")}]#[/color]')
+                        terminal.printf(x=x_in_camera, y=y_in_camera, s=f'[color={colors.get("dark_wall")}]#[/color]')
                     else:
-                        terminal.printf(x=camera_x, y=camera_y, s=f'[color={colors.get("dark_ground")}].[/color]')
+                        terminal.printf(x=x_in_camera, y=y_in_camera, s=f'[color={colors.get("dark_ground")}].[/color]')
 
         self.explored |= self.fov
